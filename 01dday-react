@@ -1,0 +1,383 @@
+react负责逻辑控制
+reactdom负责渲染
+
+
+1==》jsx中的注释
+ {/*  */}
+
+
+
+2===》 简单的渲染
+app.js
+ps==>定义变量  使用变量
+
+import React from 'react';
+function App() {
+  const namet="我是表头";//定义变量
+  return (
+    <div>
+     
+       {/*我是注释  下面使用变量  它是表达式 */}       
+       {namet} 
+    </div>
+  );
+}
+export default App;
+
+ 
+03==>
+jsx 里面支持出绝大多数的js  你当jsx当做js就好了
+
+
+04==》在表达式{ }里面不要去写for循环和if else哈
+
+05==》在表达式里面去调用函数 
+
+import React from 'react';
+function getsay(a,b){
+   return  a+b;
+}
+function App() {
+  return (
+    <div>
+     
+       {/*我是注释  下面使用变量  它是表达式 */}
+       {getsay(10,20)}
+    </div>
+  );
+}
+export default App;
+
+
+
+06===>属性也是表达式
+ {/* 属性也是表达式 */}
+ <img src={login} title="我是图" style={{width:'50px'}}/>
+
+完整代码如下
+import React from 'react';
+import login from "./logo.svg" //导入图片
+
+function App() {
+  return (
+    <div>
+       
+        {/* 属性也是表达式 */}
+        <img src={login} title="我是图" style={{width:'50px'}}/>
+
+    </div>
+  );
+}
+export default App;
+
+
+
+07==>jsx也是表达式
+
+import React from 'react';
+import login from "./logo.svg"
+const jsx=<p>我是p</p>
+
+function App() {
+  return (
+    <div>
+       
+        {/* 属性也是表达式 */}
+        <img src={login} title="我是图" style={{width:'50px'}}/>
+
+        {/* js也是表达式 */}
+        {jsx}
+
+    </div>
+  );
+}
+export default App;
+
+
+总结==》属性也是表达式   jsx也是表达式
+
+
+08==》创建组件以   1类的形式  或者以 2函数的形式
+
+
+09==》使用组件
+在src下创建components文件夹  是放组件的
+CompType.js 组件   组件开头大写(重要)
+CompType.js文件如下
+
+import React from "react" //一定要导入React
+// 函数类型去创建组件
+export function Web1(){
+    return <div>我是以函数的形式创建的组件</div>
+}
+
+// 以类的形式创建组件
+export class Web2 extends  React.Component{
+    render(){
+        return <div>我是类组件</div>
+    }
+}
+
+
+使用组件
+// 导入组件
+import {Web1,Web2} from "./components/CompType"
+
+{/* 使用组件 */}
+<Web1></Web1>
+<Web2></Web2>
+
+
+函数式组件与类组件的区别
+函数式组件只负责  展示  不负责业务逻辑
+类组件  负责负责的业务逻辑
+
+
+
+10===> 传递参数
+import React from "react" //一定要导入React
+
+// 函数类型去创建组件
+export function Web1(props){
+    return <div>
+              我是以函数的形式创建的组件
+              <p> {props.name}</p> 
+        </div>
+}
+
+// 以类的形式创建组件  这一种传递参数要使用 this  它是挂载到实例上的
+export class Web2 extends  React.Component{
+    render(){
+        return <div>
+                  我是类组件
+                  <p> {this.props.name}</p>
+                </div>
+    }
+}
+
+
+使用的组件的页面
+// 导入组件
+import {Web1,Web2} from "./components/CompType"
+
+{/* 使用组件 */}
+<Web1 name="传值1"></Web1>
+<Web2 name="传值2"></Web2>
+
+注意 React的组件是尊循单项数据流  没有双向绑定  你去操作会报错 
+
+
+11==>创建组件 Clock.js  组件名大写
+
+
+12==》报错 Attempted import error: 'Clock' is not exported from './components/Clock'
+试导入错误：“clock”未从“./components/clock”导出
+解决:说明你的导入语句出错  重来
+
+
+13==>使用组件  实现一个时间自动跟新
+ Clock.js 如下
+
+
+import React,{Component} from "react";
+export default class Clock extends Component{
+    // state 固定的名字 状态 
+    state = {
+        data: new Date()
+    }
+    
+    // componentDidMount声明周期函数   表示组件渲染完成后
+    componentDidMount(){
+        this.timer =setInterval(() => {
+            this.setState({//  this.setState固定 更改state中的data值
+                 data:new Date()
+           })  
+        }, 1000);
+    }
+
+    // 为了防止内存泄漏  清除定时器
+    componentWillUnmount(){
+        clearInterval(this.timer);
+    }
+
+
+    
+    // 定义的组件   toLocaleTimeString转为一个具体的时间
+    render(){
+        return(
+            <div>
+                {this.state.data.toLocaleTimeString()}
+            </div>
+        )
+    }
+}
+
+
+
+使用组件
+import Clock from "./components/Clock"
+  {/* 动态组件 */}
+  <Clock></Clock>
+
+
+
+14===》
+
+修改state中的值 不能够直接修改
+ 
+    state = {
+        num: 10
+    }
+
+如 this.state.num+=12; 不能够直接修改  错误 
+
+  通过 this.setState({
+      num:this.state.num+12
+  })
+
+
+
+ 15==> 获取sata中的值 
+ ps==>当你进入一个组件时  不能够使用下面这一种方式
+ import {StaTest} from "./components/StaTest" 报错
+
+
+ import React, { Component } from "react"; 
+ export default class StaTest extends Component {
+    state={
+        nun:1
+    }
+    render(){
+        return <div>
+            {/* 获取state中的值 */}
+            {this.state.nun}
+        </div>
+    }
+  }
+
+
+import StaTest from "./components/StaTest"
+  {/* 使用 */}
+  <StaTest></StaTest>
+
+
+16==》 this.setStat是批量执行的  它发现做三次是多与的，所以只执行一次
+import React, { Component } from "react";
+
+export default class StaTest extends Component {
+  state = {
+    nun: 1
+  };
+
+  componentDidMount() {
+    //  this.setStat是批量执行的  它发现做三次是多与的，所以只执行一次
+    this.setState({
+      nun: this.state.nun + 1
+    });
+
+    this.setState({
+        nun: this.state.nun + 1
+    });
+
+    this.setState({
+        nun: this.state.nun + 1
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        {/* 获取state中的值  最终为2*/}
+        {this.state.nun}
+      </div>
+    );
+  }
+}
+
+
+如何让他执行三次
+更改为this.setState
+
+    this.setState(prevState=>{
+        return{
+            nun:prevState.nun+1
+        }
+    })
+
+      this.setState(prevState => {
+          return {
+              nun: prevState.nun + 1
+          }
+      })
+
+      this.setState(prevState => {
+          return {
+              nun: prevState.nun + 1
+          }
+      })
+
+      可以优化为
+      this.setState(prevState => ({
+          nun: prevState.nun + 1
+      }))
+
+      
+17==》 条件渲染
+ state初始化一般写在构造器当中
+
+CharShop.js如下
+
+import React, { Component } from "react";
+export default class CharShop  extends Component {
+    // state初始化一般写在构造器当中
+    constructor(props){
+        super(props);
+        this.state={
+            goods: [{ id: 1, text: "web111" }, { id: 2, text: "web222" },{ id: 3, text: "web333" }]
+        }
+    }
+
+     render(){
+        //  获取state中的内容
+         let con = this.state.goods[0].text ? <h1>{this.state.goods[0].text}</h1>:null   //条件渲染 
+
+         return(
+             <div>
+              {con}
+             </div>
+         )
+     }
+
+}
+
+17==》循环熏染数组 内饰v-for
+
+import React, { Component } from "react";
+
+export default class CharShop  extends Component {
+    // state初始化一般写在构造器当中
+    constructor(props){
+        super(props);
+        this.state={
+            goods: [
+             { id: 1, text: "web111" },
+             { id: 2, text: "web222" },
+             { id: 3, text: "web333" }
+            ]
+        }
+    }
+
+
+     render(){
+         return(
+             <div>
+                {/* 条年渲染  类v-for */}
+                {this.state.goods.map(item=>
+                  <li key={item.id}>{item.text}</li>
+                )}
+             </div>
+         )
+     }
+}
+
+https://github.com/ishouldgodo/ReactDemo.git
