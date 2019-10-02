@@ -380,4 +380,12 @@ export default class CharShop  extends Component {
      }
 }
 
+
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/ishouldgodo/ReactDemo.git
+git push -u origin master
 https://github.com/ishouldgodo/ReactDemo.git
+
+

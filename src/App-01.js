@@ -1,7 +1,6 @@
 import React from 'react';
 import login from "./logo.svg"
 
-import "./index"
 // 导入组件Clock
 import {Web1,Web2} from "./components/CompType"
 import Clock from "./components/Clock"
@@ -16,7 +15,7 @@ import Add from "./components/Add"
 import ListTask from "./components/ListTask"
 
 // import { BrowserRouter as Route, Link } from 'react-router-dom';
-import {Link,Route,NavLink,Redirect,Switch} from "react-router-dom"
+import {Link,Route} from "react-router-dom"
 
 
 const jsx=<p>我是p</p>
@@ -40,18 +39,37 @@ function App() {
         {/* js也是表达式 */}
         {jsx}
 
+        {/* 使用组件 */}
+        <Web1 name="传值1"></Web1>
+        <Web2 name="传值2"></Web2>
 
+        {/* 动态组件 */}
+        <Clock></Clock>
 
-       
-      <NavLink to="/chuli" activeClassName="demo">Chuli</NavLink><br/>
-      <NavLink to="/clock" activeClassName="demo">Clock</NavLink>
+        {/*  */}
+      <StaTest></StaTest>
+
+      {/*  */}
+      <Carshop></Carshop>
       
-      <Switch>
-        <Route path="/Chuli" component={Chuli}></Route>
-        <Route path="/Clock" component={Clock}></Route>
-        <Redirect to="/chuli"></Redirect>
-      </Switch>
-    
+
+      {/* Hook的使用 */}
+      <Hookzujian></Hookzujian>
+
+      {/* <Life></Life> */}
+
+      <Chuli></Chuli>
+
+
+      {/* todeolise */}
+      <ToDo></ToDo>
+      <Add></Add>
+      
+      <Link to="/chuli">Chuli</Link>
+      <Link to="/clock">Clock</Link>
+
+      <Route path="/Chuli" componenet={Chuli}></Route>
+      <Route path="/Clock" componenet={Clock}></Route>
 
 
 

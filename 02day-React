@@ -1,0 +1,201 @@
+1==》Hook的使用
+
+import React, { useState } from "react" //注意这里  React的大小写
+
+export default function HookTest(){
+    const [count,setCount]=useState(0); //解构
+    return(
+        <div>
+            <p>点击了{count}</p>
+            <button onClick={()=>setCount(count+1)}>点击</button>
+        </div>
+    )
+}
+当你点击的时候 就会自动的加1
+
+
+2==> https://www.bilibili.com/video/av61235977/?p=20
+生命周期
+
+03==>在React中写类 第一{}代表里面写jsx  的二个代表写对象{}
+
+  <div style={{opacity:0.4}}> React学不会了  怎么办</div>
+
+
+04==> render函数的注意点
+  //  因为state已发生改变  render就会执行
+        // 所以  当  opacity的值发生改变    render函数就会执行  setTimeout就变成了每个0.2s循环一次
+        // render 一上来就会执行   状态改变就会执行
+
+
+ 案例 每隔0.2s颜色变淡
+ import React, { Component } from "react";
+import { setTimeout } from "timers";
+
+export default class Life extends Component {
+
+    state={
+       opacity:1
+    }
+
+
+     render(){
+         let {opacity}=this.state  //解构
+         console.log(1);
+
+         setTimeout(() => {
+             opacity-=0.1;
+             if (opacity<=0){
+                opacity=1
+             }
+             this.setState({
+                 opacity:opacity
+             })
+         }, 200);
+
+        //  因为state已发生改变  render就会执行
+        // 所以  当  opacity的值发生改变    render函数就会执行  setTimeout就变成了每个0.2s循环一次
+        // render 一上来就会执行   状态改变就会执行
+         return(
+             <div style={{opacity:opacity}}> React学不会了  怎么办</div>
+         )
+     }
+}
+
+
+
+
+
+ 05===》案例 每隔0.2s颜色变淡
+另外一种方式  
+import React, { Component } from "react";
+export default class Life extends Component {
+    state={
+       opacity:1
+    }
+
+    componentDidMount(){ //声明周期  表示组件已经挂载了
+        let { opacity } = this.state  //解构
+        setInterval(() => {
+            opacity -= 0.1;
+            if (opacity <= 0) {
+                opacity = 1
+            }
+
+            this.setState({
+                opacity
+            })
+            console.log(opacity);
+
+        }, 200);
+
+    }
+
+
+     render(){
+         let { opacity } = this.state  //结构
+        //  因为state已发生改变  render就会执行
+        // 所以  当  opacity的值发生改变    render函数就会执行  setTimeout就变成了每个0.2s循环一次
+        // render 一上来就会执行   状态改变就会执行
+         return(
+             <div style={{ opacity  }}> React学不会了  怎么办</div>
+         )
+     }
+}
+
+
+
+
+使用
+  ReactDOM.unmountComponentAtNode(document.getElementById("root")) 报错
+因为你没有引用
+import ReactDOM from 'react-dom'
+
+
+
+组件的三大属性
+
+组件必须大写
+组件必须只有一个根元素
+
+
+
+state是组件的重要对象   值可以是对象
+组件被称之为  状态机    通过跟新组件的 state来对应跟新响应的页面
+
+
+
+05==>印记中文
+
+
+06路由的基本使用
+
+下载 npm i -D react-router react-router-dom
+
+APP.js
+ps==>NavLink 选中的时候 可以高亮
+demo 是你自己添加的一个类哈
+
+   
+    import Chuli from "./components/Chuli"
+    import Clock from "./components/Clock"
+
+    import {Link,Route,NavLink} from "react-router-dom"
+
+    <NavLink to="/chuli" activeClassName="demo">Chuli</NavLink>
+    <NavLink to="/clock" activeClassName="demo">Clock</NavLink>
+
+    <Route path="/Chuli" component={Chuli}></Route>
+    <Route path="/Clock" component={Clock}></Route>
+
+
+index.js
+
+// 路由新增加的
+import {HashRouter,BrowserRouter} from "react-router-dom"
+
+ReactDOM.render(
+    <BrowserRouter>
+        <App/>
+    </BrowserRouter>,
+     document.getElementById('root'));
+
+最终效果  点击的路由的时候 可以高亮显示
+
+
+07==》
+引入 
+ Redirect   默认展示某一个页面
+ Switch     一旦找到 路由 就停止  不会在往下找了
+
+
+App.js
+
+    import {Link,Route,NavLink,Redirect,Switch} from "react-router-dom"
+
+    <NavLink to="/chuli" activeClassName="demo">Chuli</NavLink>
+    <NavLink to="/clock" activeClassName="demo">Clock</NavLink>
+
+    <Switch>
+    <Route path="/Chuli" component={Chuli}></Route>
+    <Route path="/Clock" component={Clock}></Route>
+    <Redirect to="/chuli"></Redirect> //默认展示chuli页面
+    </Switch>
+
+
+ BrowserRouter 这一种 兼容性不好  多次刷新的时候  css样似可能会丢失
+ HashRouter     这一种兼容好  但是有锚点
+ 如何解决 BrowserRouter的缺点
+
+使用连接的时候 加上  %PUBLIC_URL%
+home.css  在public目录下
+
+<link rel="stylesheet" href="%PUBLIC_URL%/home.css"> 可以解决
+
+
+ <link rel="stylesheet" href="./home.css">  失败 
+ 在react中 ./ 和 /  区别不同  /表示从项目暴露的资源目录开始查找
+
+
+08嵌套路由
+
