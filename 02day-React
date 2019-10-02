@@ -1,4 +1,4 @@
-1==》Hook的使用
+1==》Hook的使用(没有懂)
 
 import React, { useState } from "react" //注意这里  React的大小写
 
@@ -14,7 +14,9 @@ export default function HookTest(){
 当你点击的时候 就会自动的加1
 
 
-2==> https://www.bilibili.com/video/av61235977/?p=20
+2==> https://www.bilibili.com/video/av61235977/?p=20 的视频地址
+
+
 生命周期
 
 03==>在React中写类 第一{}代表里面写jsx  的二个代表写对象{}
@@ -113,12 +115,11 @@ import ReactDOM from 'react-dom'
 
 
 
-组件的三大属性
+组件的三大属性  state props refs
 
+写组件的要求
 组件必须大写
 组件必须只有一个根元素
-
-
 
 state是组件的重要对象   值可以是对象
 组件被称之为  状态机    通过跟新组件的 state来对应跟新响应的页面
@@ -128,13 +129,14 @@ state是组件的重要对象   值可以是对象
 05==>印记中文
 
 
-06路由的基本使用
+06====>路由的基本使用
 
 下载 npm i -D react-router react-router-dom
 
 APP.js
 ps==>NavLink 选中的时候 可以高亮
 demo 是你自己添加的一个类哈
+activeClassName  点击的时候  可以高亮显示
 
    
     import Chuli from "./components/Chuli"

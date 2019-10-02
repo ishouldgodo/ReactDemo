@@ -18,16 +18,15 @@ import ListTask from "./components/ListTask"
 // import { BrowserRouter as Route, Link } from 'react-router-dom';
 import {Link,Route,NavLink,Redirect,Switch} from "react-router-dom"
 
-import DoAddList from "./page/DoAddList"
-
-
 
 const jsx=<p>我是p</p>
 
 
 function App() {
 
- 
+//  this.state={
+//    tolists:["11","222","3333"]
+//  }
 
 
 
@@ -45,20 +44,13 @@ function App() {
 
        
       <NavLink to="/chuli" activeClassName="demo">Chuli</NavLink><br/>
-      <NavLink to="/clock" activeClassName="demo">Clock</NavLink><br />
-      <NavLink to="/gotodo" activeClassName="demo">gotodo</NavLink>
+      <NavLink to="/clock" activeClassName="demo">Clock</NavLink>
       
       <Switch>
         <Route path="/Chuli" component={Chuli}></Route>
         <Route path="/Clock" component={Clock}></Route>
-        <DoAddList path="/gotodo" component={DoAddList}></DoAddList>
-        
         <Redirect to="/chuli"></Redirect>
-
       </Switch>
-
-
-
     
 
 

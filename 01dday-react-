@@ -40,7 +40,6 @@ function getsay(a,b){
 function App() {
   return (
     <div>
-     
        {/*我是注释  下面使用变量  它是表达式 */}
        {getsay(10,20)}
     </div>
@@ -98,6 +97,7 @@ export default App;
 
 
 08==》创建组件以   1类的形式  或者以 2函数的形式
+
 
 
 09==》使用组件
@@ -373,7 +373,7 @@ export default class CharShop  extends Component {
              <div>
                 {/* 条年渲染  类v-for */}
                 {this.state.goods.map(item=>
-                  <li key={item.id}>{item.text}</li>
+                  return  <li key={item.id}>{item.text}</li>
                 )}
              </div>
          )
