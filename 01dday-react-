@@ -343,7 +343,7 @@ export default class CharShop  extends Component {
 
          return(
              <div>
-              {con}
+               {con}
              </div>
          )
      }

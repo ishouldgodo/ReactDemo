@@ -16,3 +16,78 @@ export default class ReduxTest extends Component {
        )
     }
 }
+
+
+
+
+ ps==》 form下的表单
+        无论是    <input type="submit"></input>
+        还是<button></button> 
+        它们都会刷新页面  进行提交  
+
+
+<form>
+    <input type="text"></input>
+    <input type="password"></input>
+    <input type="submit"></input>
+</form>  
+
+当你点击的时候 就会进行提交  页面会刷新
+如何不让它刷新 不进行提交
+1==》默认事件
+
+
+04==》功能描述 :
+用户名自动获取    onChange用户状态发生改变  就获取值   就是时时获取值 使用onChange
+点击按钮 获取密码  
+只要绑定了点击事件  就可以获取值 通过
+let usercont=event.target.value;//获取用户的值
+
+
+ref获取值的另外一种用法  
+  密码： <input type="password" ref={this.Myrefs}></input>
+
+    Myrefs = React.createRef();//创建一个承装ref的容器  这个容器是专门的  只能保存一个ref  Myrefs一致  
+    let pwd = this.Myrefs.current.value
+    consolr.log(pwd)
+    
+
+    // 用户名是受控组件 :会自动维护state
+    // 非受控组件  :不会自动维护state
+
+
+05==>ref的三种用法
+
+   // 第一种
+    getvalue11= () => {
+        let hah = this.refs.zhi.value
+        console.log("第1种", hah)
+    }
+  
+    // 第2种 ref的使用
+   getvalue=()=>{
+       console.log(this.input1.value)
+   }
+     
+    Valuerefs = React.createRef();//创建一个承装ref的容器  这个容器是专门的  只能保存一个ref  Myrefs一致  
+    getvalue22=()=>{
+        let pwd = this.Valuerefs.current
+        console.log("第三种", pwd.value)
+    }
+
+
+    {/* 第一种 */}
+    <input type="text" ref="zhi"></input>
+    <button onClick={this.getvalue11}>按钮</button>    
+
+    {/* 第二种  this.input1的实例是input*/}
+    <input type="text" ref={(input)=>{this.input1=input}}></input>
+    <button onBlur={this.getvalue}>按钮</button>
+        
+
+        {/* 第三种 */}
+    <input type="text" ref={this.Valuerefs}></input>
+    <button onClick={this.getvalue22}>按钮</button>
+
+
+06==》

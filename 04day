@@ -1,0 +1,49 @@
+1==>在函数体外  定义的变量 
+在函数体内访问 通过this.变量名的方式  来访问
+
+
+
+2===》 raect中两个组件  互相通信使用的技术
+使用 消息订阅（subscribe）和发布(publish)机制   s儿 伯 s rai b   pʌ b lɪ ʃ
+
+有一个库可以处理
+PubSubJS  它是第三方插件  
+1)下载 cnpm install pubsub-js -S    我的版本  "pubsub-js": "^1.7.0",
+2) 在需要使用的组件中引入    import PubSub from "pubsub-js" 
+
+
+Numbergo1.js
+ // 发送消息：PubSub.publish(名称, 参数)
+    state={
+        listitem:"我是从一个组件的 跑过来的"
+    }
+    
+    chuandi=()=>{
+        // PubSub.publish(id, data)  
+        // id 声明一个唯一的id，或者标识符，为pubsub-js提供辨识，千万不可重复
+        // data 第二个参数也可以传递一个对象
+        let {listitem}=this.state //结果
+        PubSub.publish('mykeyvalue',listitem)
+    }
+
+    <button onClick={this.chuandi}>按钮</button>
+
+    Numbergo2.jd
+    ----------------------------------------------------------------------------
+    state={
+        info:""
+    }
+   
+    // 声明周期 组件完成挂载之后
+    componentDidMount(){
+        // mykeyvalue表示符  msg报错信息  data传递过来的数据
+        PubSub.subscribe("mykeyvalue",(msg,data)=>{
+            console.log("从另外一个组件从低过来的数据",data);
+            this.setState({
+                info: data
+            })
+        })
+    }
+
+
+    

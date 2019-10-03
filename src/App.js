@@ -15,11 +15,16 @@ import ToDo from "./components/ToDo"
 import Add from "./components/Add"
 import ListTask from "./components/ListTask"
 
+import Numbergo from "./page/Numbergo"
+
+
 // import { BrowserRouter as Route, Link } from 'react-router-dom';
 import {Link,Route,NavLink,Redirect,Switch} from "react-router-dom"
 
 import DoAddList from "./page/DoAddList"
 
+import Login from "./components/Login"
+import MyInput from './components/MyInput';
 
 
 const jsx=<p>我是p</p>
@@ -57,7 +62,15 @@ function App() {
 
       </Switch>
 
+      
+      <Login></Login>
+      <MyInput></MyInput>
 
+      {/*  */}
+      <Numbergo></Numbergo>
+      
+      
+      
 
     
 
