@@ -1,0 +1,70 @@
+antd的移动端网站
+https://ant.design/index-cn   
+
+
+2==》如何实现按需加载（重点） 按需打包(重点)
+package.json 是不能够注释的哦
+
+1)yarn add react-app-rewired customize-cra babel-plugin-import -D  安装
+
+2)在根目录下创建  config-overrides.js 
+
+3)config-overrides.js中添加代码
+const { override, fixBabelImports } = require('customize-cra');
+module.exports=override(
+    fixBabelImports('import',{
+        libraryName:'antd',
+        libraryDirectory:'es',
+        style:true
+    })
+)
+
+
+
+4) 在package.json变为   
+"scripts": {
+     "start": "react-app-rewired start",
+     "build": "react-app-rewired build",
+     "test": "react-app-rewired test",
+     "eject": "react-scripts eject"
+  },
+
+5)直接使用对应的组件
+import { Button } from 'antd';
+就ok了
+
+
+
+如何自定义主题
+yarn add less less-loader
+
+在 config-overrides.js 添加
+
+ addLessLoader({
+        javascriptEnabled:true,
+        modifyVars:{'@primary-color':'#1DA57A'}
+    })
+
+
+然后最后变为
+
+const { override, fixBabelImports, addLessLoader } = require('customize-cra');
+module.exports=override(
+    fixBabelImports('import',{
+        libraryName:'antd',
+        libraryDirectory:'es',
+        style:true
+    }),
+
+    addLessLoader({
+        javascriptEnabled:true,
+        modifyVars:{'@primary-color':'#1DA57A'}
+    })
+)
+
+
+3===>
+ts
+angluar使用tyscript
+vscode 就是使用ttscript编写
+
