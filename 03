@@ -90,4 +90,7 @@ ref获取值的另外一种用法
     <button onClick={this.getvalue22}>按钮</button>
 
 
-06==》
+06==》  实现封装NavLink
+07==>路由组件传参
+08==》编程式路由导航
+

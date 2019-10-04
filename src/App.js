@@ -25,6 +25,9 @@ import DoAddList from "./page/DoAddList"
 
 import Login from "./components/Login"
 import MyInput from './components/MyInput';
+import AntChuJian from './components/AntChuJian';
+
+
 
 
 const jsx=<p>我是p</p>
@@ -68,6 +71,8 @@ function App() {
 
       {/*  */}
       <Numbergo></Numbergo>
+
+      <AntChuJian></AntChuJian>
       
       
       
