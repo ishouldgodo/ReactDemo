@@ -205,6 +205,34 @@ home.css  在public目录下
 08嵌套路由
 
 
+09==》  实现封装NavLink
+13.34==14.37完成  
+报错至今未解决?????????????????????
+Attempted import error: 'react-router-dom' does not contain a default export (imported as 'BrowserRouter').
 
-按需加载
-yarn add babel-plugin-import --dev     // 安装
+我写的代码如下 
+组件是这样写的{
+
+    import React, { Component } from 'react';
+    import NavLink from 'BrowserRouter'
+
+    export default class MyLink extends Component{
+        render(){
+        let props=this.props;//接受组件传递过来的参数
+        return(
+            // activeCLassName="demo"  当你点击的时候给你添加一个类，改变样似
+            //   接受参数    {...props}
+                <NavLink {...props}></NavLink>
+            
+        )
+        }
+    }
+
+}
+
+10==>路由组件传参
+15:13===
+
+
+
+11==》编程式路由导航

@@ -12,6 +12,7 @@ import Chuli from "./components/Chuli"
 
 import ToDo from "./components/ToDo"
 import Add from "./components/Add"
+
 import ListTask from "./components/ListTask"
 
 // import { BrowserRouter as Route, Link } from 'react-router-dom';
@@ -67,9 +68,11 @@ function App() {
       
       <Link to="/chuli">Chuli</Link>
       <Link to="/clock">Clock</Link>
+     
 
       <Route path="/Chuli" componenet={Chuli}></Route>
       <Route path="/Clock" componenet={Clock}></Route>
+      
 
 
 

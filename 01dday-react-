@@ -1,6 +1,9 @@
 react负责逻辑控制
 reactdom负责渲染
 
+本节知识点  有 
+1)变量的使用，简单使用。
+
 
 1==》jsx中的注释
  {/*  */}
@@ -16,14 +19,13 @@ function App() {
   const namet="我是表头";//定义变量
   return (
     <div>
-     
        {/*我是注释  下面使用变量  它是表达式 */}       
        {namet} 
     </div>
   );
 }
 export default App;
-
+-----------------------
  
 03==>
 jsx 里面支持出绝大多数的js  你当jsx当做js就好了
@@ -94,11 +96,9 @@ export default App;
 
 
 总结==》属性也是表达式   jsx也是表达式
-
+-----------------------------------------
 
 08==》创建组件以   1类的形式  或者以 2函数的形式
-
-
 
 09==》使用组件
 在src下创建components文件夹  是放组件的
@@ -120,7 +120,7 @@ export class Web2 extends  React.Component{
 
 
 使用组件
-// 导入组件
+// 导入组件 在一个文件中导入了两个组件哈
 import {Web1,Web2} from "./components/CompType"
 
 {/* 使用组件 */}
@@ -132,7 +132,10 @@ import {Web1,Web2} from "./components/CompType"
 函数式组件只负责  展示  不负责业务逻辑
 类组件  负责负责的业务逻辑
 
-
+-------------------
+在src下创建components文件夹  是放组件的
+CompType.js 组件   组件开头大写(重要)
+CompType.js文件如下
 
 10===> 传递参数
 import React from "react" //一定要导入React
@@ -166,7 +169,7 @@ import {Web1,Web2} from "./components/CompType"
 
 注意 React的组件是尊循单项数据流  没有双向绑定  你去操作会报错 
 
-
+-------------------------------------------------------------
 11==>创建组件 Clock.js  组件名大写
 
 
@@ -240,7 +243,7 @@ import Clock from "./components/Clock"
  15==> 获取sata中的值 
  ps==>当你进入一个组件时  不能够使用下面这一种方式
  import {StaTest} from "./components/StaTest" 报错
-
+ 应该为import StaTest from "./components/StaTest" 一个组件引入不加{}大括号
 
  import React, { Component } from "react"; 
  export default class StaTest extends Component {
@@ -261,7 +264,7 @@ import StaTest from "./components/StaTest"
   <StaTest></StaTest>
 
 
-16==》 this.setStat是批量执行的  它发现做三次是多与的，所以只执行一次
+16==》 this.setStat是批量执行的  它发现做三次是多余的，所以只执行一次
 import React, { Component } from "react";
 
 export default class StaTest extends Component {
@@ -270,7 +273,7 @@ export default class StaTest extends Component {
   };
 
   componentDidMount() {
-    //  this.setStat是批量执行的  它发现做三次是多与的，所以只执行一次
+    //  this.setStat是批量执行的  它发现做三次是多余的，所以只执行一次
     this.setState({
       nun: this.state.nun + 1
     });
@@ -350,7 +353,7 @@ export default class CharShop  extends Component {
 
 }
 
-17==》循环熏染数组 内饰v-for
+17==》循环数组 类似v-for
 
 import React, { Component } from "react";
 
@@ -385,7 +388,7 @@ git init
 git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/ishouldgodo/ReactDemo.git
-git push -u origin master
+git push -u origin master 
 https://github.com/ishouldgodo/ReactDemo.git
 
 
